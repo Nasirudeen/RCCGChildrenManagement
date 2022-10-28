@@ -1,0 +1,165 @@
+﻿@model RccgChildrenManagement.Models.Children;
+@{
+    ViewData["Title"] = Model.Heading;
+    Layout = "~/Views/Shared/LayoutNew.cshtml";
+}
+<br />
+<br />
+<br />
+<div class="container row reg-panel">
+    <div class="col-md-4">
+        <div id="center">
+            <div>
+                <img style="width: 20rem; transition: width 2s" src="~/images/Rccg.png" alt="RCCG Logo">
+
+            </div>
+
+            @*<h1>Children Church</h1>*@
+            @*<p>Register your kids for church</p>*@
+        </div>
+
+        <div style="background-color: none; color: white;  margin-top: 18rem">
+            @*<p style="font-style: italic;">Jesus Christ the same yesterday, today, and forever more. Amen</p>*@
+        </div>
+    </div>
+    <div class="col-xl-8" style="border: 1px;" solid #ccc; padding-top: 1rem; width="xl: 1340px;">
+        <form method="post" action="Register" name="myform" onsubmit="return validateform()">
+            <h2>RCCG GWC Children Church Registration</h2>
+            <p><b>Note:</b> You have to set a responsible party (last section) for drop off and pickup</p>
+            <hr>
+            <h2>Children Details</h2>
+
+            <h5>  @Html.ValidationSummary(false, "", new { @class = "text-danger" })</h5>
+            <div class="form-group row" style="margin-top:40px;">
+                <div class="col-md-6">
+           
+       
+                    <label style="font-size:25px">Child First name:</label><br />
+                    <input class="form-control inputstl" type="text" class="form-control" id="inputEmail3" name="ChildFirstName" placeholder="Enter your ChildFirstName" style="width:280px;" required><br />
+                    <label style="font-size:25px">Child Last name:</label><br />
+                    <input class="form-control inputstl" type="text" class="form-control" id="inputEmail3" name="ChildLastName" placeholder="Enter your ChildLastName" style="width:280px;" required>
+                    <label style="font-size:25px">DOB:</label><br />
+                    <input class="form-control inputstl" type="date" class="form-control" id="inputEmail3" name="DOB" placeholder=" Enter DOB" style="width:280px;" required>
+                    <label style="font-size:25px">Class:</label><br />
+                    <select class="form-control inputstl" id="Class" name="ChildrenDetails[0].Class">
+                        <option>Toddler</option>
+                        <option>5-6 years</option>
+                        <option>7-8 years</option>
+                        <option>9-12 years</option>
+                        <option>Nannies</option>
+                    </select>
+                </div>               
+            </div>
+            <hr size="30">       
+
+            <div style="text-align: center; margin-bottom: 2rem; margin-top: 2rem;">
+                <button class="btn btn-lg btn-success btn-block mt-5" type="submit" style="width:77%; margin-top:5%; margin-left:10%;">Create Account</button>
+
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/js/script.js"></script>
+<style>
+    .inputstl {
+        padding: 9px;
+        border: solid 1px #0077B0;
+        outline: 0;
+        background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
+        background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+        box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+        -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+        -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    }
+</style>
+<script src="~/js/script.js"></script>
+@*<script>
+        @if (TempData["status"] != null)
+        {
+            <text>alert('Children Created Successfully'); </text>
+        }
+</script>*@
+<script>
+        @if (TempData["status"] != null)
+        {
+            <text>alert('Children Created Successfully'); </text>
+        }
+
+    function validateform()
+    {
+        var ChildFirstName = document.myform.ChildFirstName.value;
+        var ChildLastName = document.myform.ChildLastName.value;
+
+        if (ChildFirstName == null || ChildFirstName == "");
+        {
+            alert("ChildFirstName cant be blank");
+            return false;
+        }
+        else
+        {
+            if (ChildLastName == null || ChildLastName == "");
+            {
+                alert("ChildLastName cant be blank");
+                return false;
+            }
+        }
+        
+    }
+</script>
+@*@section Scripts{
+        @{
+            <partial name="_ValidationScriptsPartial" /> }
+    }*@
+<script type="text/javascript">
+    $(function () {
+
+        // $("#btnSave").attr("disabled", true);
+        $('#searchpoint').click(function (evt) {
+            evt.preventDefault();
+            var FirstName = $("#FirstName").val();
+            var LastName = $("#LastName").val();
+            var HomeAddress = $("#HomeAddress").val();
+            var Telephone = $("#Telephone").val();
+            var EmailAddress = $("#EmailAddress").val();
+            var Member = $("#Member").val
+            var NumberofKid = $("#NumberofKid").val();
+            var ResponsibleParty = $("#ResponsibleParty").val();
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/User/Register/",
+                dataType: 'json',
+                data: {
+                    ParentId: ParentId,
+
+                },
+
+                success: function (data) {
+                    alert(data);
+                    var s = data.split(":");
+
+                    $("#ChildFirstName").val(s[0]);
+                    $("#ChildLastName").val(s[1]);
+                    $("#DOB").val(s[2]);
+                    $("#Class").val(s[3]);
+                    alert(ParentId);
+                },
+                error: function (xhr) {
+                    //debugger;
+                    console.log(xhr.responseText);
+                    alert("Error has occurred..");
+                }
+            });
+
+            </script>
+         function ValidationForm (){
+          var name = document.myf
+    
+          <script>
+
+
+
+
+
+</script>

@@ -1,0 +1,115 @@
+﻿
+@model IEnumerable<RccgChildrenManagement.Models.Attendance>
+
+@{
+    ViewBag.Title = "Parent DataTable";
+    Layout = "~/Views/Shared/LayoutData.cshtml";
+}
+<div class="container row reg-panel">
+    <div class="col-md-4">
+        <div id="center">
+            <div>
+                <img style="width: 20rem; transition: width 2s" src="~/images/Rccg.png" alt="RCCG Logo">
+
+            </div>
+
+            <h1>Children Church</h1>
+            <p>Register your kids for church</p>
+        </div>
+
+        <div style="background-color: none; color: white;  margin-top: 18rem">
+            <p style="font-style: italic;">Jesus Christ the same yesterday, today, and forever more. Amen</p>
+        </div>
+    </div>
+    <div class="col-xl-8" style="border: 1px;" solid #ccc; padding-top: 1rem; width="xl: 1380px;">
+
+        @*<img style="margin-top: 80px;" src="~/images/Rccg.png" alt="" width="180" height="150">
+        <img style="margin-top: 80px; float:right;" src="~/images/Rccg.png" alt="" width="180" height="150">*@
+        <!--<CENTER><h3 style="margin-top: 30px; font-size: 45px;">RCCG GLORY WORSHIP CENTRE CHILDREN APPLICATION-->  @*@DateTime.Now.ToString("MMMM, yyyy")*@ <!--</h3></CENTER>-->
+        <CENTER><h4 style="margin-top: 30px; font-size:55px;">DROP OFF  LIST  </h4></CENTER>
+        <h4 style="text-align :right;">@DateTime.Now.ToString("dd MMMM, yyyy"), @DateTime.Now.ToShortTimeString()</h4>
+        <hr>
+
+        <br />
+        <table id="table_Name" class="table table-striped table-hover">
+            <thead style="background-color: azure; font-size: 20px;">
+                <tr>
+                    <th>SNo </th>
+                    <th> EmailAddress </th>
+                    <th> ParentCode </th>
+                    <th> FirstName </th>
+                    <th> LastName </th>
+                    <th> DOB </th>
+                    <th> Class </th>
+                    <th> Registered </th>
+                    <th> ChildrenCodes </th>
+                    <th>  DroppedOff   </th>
+                    <th>  PickedUp   </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var Id = item.AttendanceId;
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AttendanceId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChildrenCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChildrenId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DroppedOff)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PickedUp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Created)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DroppedOff)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PickedUp)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>SNo </th>
+                    <th> EmailAddress </th>
+                    <th> ParentCode </th>
+                    <th>  FistName  </th>
+                    <th>  LastName   </th>
+                    <th>  DOB   </th>
+                    <th>  Class  </th>
+                    <th>  Registered   </th>
+                    <th> ChildrenCodes </th>
+                    <th>  DroppedOf     </th>
+                    <th>  PickedOff    </th>
+
+                </tr>
+            </tfoot>
+        </table>
+        <script>
+        @if (TempData["status"] != null)
+        {
+             <text>alert("Children Dropped Up successfully, Check your email for QRCode"); </text>
+
+        }
+        </script>
+        
+
+

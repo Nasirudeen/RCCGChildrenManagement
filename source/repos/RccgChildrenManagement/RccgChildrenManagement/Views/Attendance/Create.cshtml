@@ -1,0 +1,69 @@
+﻿@model RccgChildrenManagement.Models.Attendance;
+@{
+    ViewData["Title"] = "Attendance Page";
+    Layout = "~/Views/Shared/LayoutNew.cshtml";
+}
+<br />
+<br />
+<br />
+<div class="container row reg-panel">
+    <div class="col-md-4">
+        <div id="center">
+            <div>
+                <img style="width: 20rem; transition: width 2s" src="~/images/Rccg.png" alt="RCCG Logo">
+
+            </div>
+
+            <h1>Children Church</h1>
+            <p>Drop Off your kids for church</p>
+        </div>
+
+        <div style="background-color: none; color: white;  margin-top: 18rem">
+            <p style="font-style: italic;">Jesus Christ the same yesterday, today, and forever more. Amen</p>
+        </div>
+    </div>
+    <div class="col-xl-8" style="border: 1px;" solid #ccc; padding-top: 1rem; width="xl: 1340px;">
+        <form method="post" asp-controller="Attendance" asp-action="Create">
+
+            <hr>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <h1>Children Dropped Off Successfully</h1>
+            <h3>Check your Email for QRCode to show in the Church when Dropping the Children </h3>
+
+            <h5>  @Html.ValidationSummary(false, "", new { @class = "text-danger" })</h5>
+            <div class="form-group row" style="margin-top:40px;">
+                <div class="col-md-6">
+
+                    <br />
+
+        </form>
+    </div>
+</div>
+<style>
+    .inputstl {
+        padding: 9px;
+        border: solid 1px #0077B0;
+        outline: 0;
+        background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
+        background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+        box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+        -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+        -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    }
+</style>
+<script>
+        @if (TempData["status"] != null)
+        {
+            <text>alert('Children Dropped Off Successfully, Check your Email for QRCode'); </text>
+        }
+</script>
+@*@section Scripts{
+        @{
+            <partial name="_ValidationScriptsPartial" /> }
+    }*@
+

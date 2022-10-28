@@ -1,0 +1,96 @@
+﻿@model RccgChildrenManagement.Models.User;
+@{
+    ViewData["Title"] = "User Page";
+    Layout = "~/Views/Shared/LayoutNew.cshtml";
+}
+<br />
+<br />
+<br />
+<div class="container row reg-panel">
+    <div class="col-md-4">
+        <div id="center">
+            <div>
+                <img style="width: 20rem; transition: width 2s" src="~/images/Rccg.png" alt="RCCG Logo">
+
+            </div>
+
+            <h1>Children Church</h1>
+            <p>Register your kids for church</p>
+        </div>
+
+        <div style="background-color: none; color: white;  margin-top: 18rem">
+            <p style="font-style: italic;">Jesus Christ the same yesterday, today, and forever more. Amen</p>
+        </div>
+    </div>
+    <div class="col-xl-8" style="border: 1px;" solid #ccc; padding-top: 1rem; width="xl: 1340px;">
+        <form method="post" Asp-Controller="User" Asp-action="CreateUser">
+            <h2>RCCG GWC Children Church Registration</h2>
+            
+            <hr>
+            <h2>User Details</h2>
+
+            <h5>  @Html.ValidationSummary(false, "", new { @class = "text-danger" })</h5>
+            <div class="form-group row" style="margin-top:40px;">
+
+                <div class="col-md-6">
+                    <label style="font-size:25px">First Name:</label><br />
+                    <input class="form-control inputstl" type="text" class="form-control" id="inputEmail3" name="FirstName" placeholder="Enter your FirstName" style="width:280px;" required><br />
+
+                    <label style="font-size:25px">Last Name:</label><br />
+                    <input class="form-control inputstl" type="text" class="form-control" id="inputEmail3" name="LastName" placeholder="Enter your LastName" style="width:280px;" required>
+
+                    <label style="font-size:25px">Home address:</label><br />
+                    <textarea class="form-control inputstl" rows="3" name="address" placeholder="Enter your home address" required></textarea><br />
+                   
+                </div>
+
+                <div class="col-md-6">
+                    <label style="font-size:25px">EmailAddress:</label><br />
+                    <input class="form-control inputstl" type="email" class="form-control" id="inputEmail3" name="EmailAddress" placeholder=" Enter your EmailAddress" style="width:280px;" required>
+                    <label style="font-size:25px">Password:</label><br />
+                    <input class="form-control inputstl" type="password" class="form-control" id="inputEmail3" name="Password" placeholder="Enter your Password" style="width:280px;" required>
+                    <label style="font-size:25px">PhoneNo:</label><br />
+                    <input class="form-control inputstl" type="Number" class="form-control" id="inputEmail3" name="PhoneNo" placeholder="Enter your PhoneNo" style="width:280px;" required><br />
+
+                    <label style="font-size:25px">Member/Visitor:</label><br />
+                    <select class="form-control inputstl" id="Member_Visitor" name="Member_Visitor">
+                        <option>Member</option>
+                        <option>Visitor</option>
+                    </select><br />
+                    <input class="form-control inputstl" type="hidden" class="form-control" id="inputEmail3" name="Kidnumber" value="0" placeholder=" " style="width:280px;" required>
+                    <br />
+                    <input class="form-control inputstl" type="hidden" class="form-control" id="inputEmail3" name="RoleId" value="2" placeholder="" style="width:280px;" required>
+                  </div>
+            </div>
+            <div style="text-align: center; margin-bottom: 2rem; margin-top: 2rem;">
+                <button class="btn btn-lg btn-success btn-block mt-5" type="submit" style="width:80%; margin-top:5%; margin-left:10%;">Create Account</button>
+                <br />
+                
+                <a asp-controller="Home" asp-action="Index" class="btn btn-success w-10" style="width:20%;"><i class="fas fa-sign-out-alt"></i>&nbspBack to Home Page</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+<hr size="30">
+<style>
+    .inputstl {
+        padding: 9px;
+        border: solid 1px #0077B0;
+        outline: 0;
+        background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
+        background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+        box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+        -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+        -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    }
+</style>
+<script>
+        @if (TempData["status"] != null)
+        {
+            <text>alert('Admin User Created Successfully'); </text>
+        }
+</script>
+
+
+

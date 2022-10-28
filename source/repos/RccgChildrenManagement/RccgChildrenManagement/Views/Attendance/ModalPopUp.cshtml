@@ -1,0 +1,156 @@
+﻿@model IEnumerable<RccgChildrenManagement.Models.FetchQrDetails>
+
+@{
+    ViewData["Title"] = "Fetch Page";
+    Layout = "~/Views/Shared/LayoutNew.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
+        crossorigin="anonymous"></script>
+<script src="./Main.js" defer></script>
+
+
+!-- Button trigger modal -->
+<section>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+        View
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" value="Print Above Section" class="btn btn-primary print">Print QRCode</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body-wrapper">
+                    <img src="https://chart.googleapis.com/chart?cht=qr&chl=@ViewBag.id&chs=180x180&choe=UTF-8&chld=L|2%27%20alt=" />
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="panel-body">
+    <div class="row">
+
+    </div>
+
+    <hr />
+    <div class="form-border" style="margin-top:40px;">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped table-hover" id="jayb1" border="1">
+                <thead style="background-color:azure;">
+                    <tr bgcolor="yellow" style="color:blue; font-size:35px;">
+
+                        <th>
+                            Name
+                        </th>
+
+
+                        <th>
+                            Click the image to print
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td style="color: black; font-size: 35px;">
+                                @Html.DisplayFor(modelItem => item.ChildFirstName)
+                                @Html.DisplayFor(modelItem => item.ChildLastName)
+                            </td>
+
+
+                            <td style="color: black; font-size: 35px;">
+                                <section>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+                                        View
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <button type="button" value="Print Above Section" class="btn btn-primary print">Print QRCode</button>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body-wrapper">
+                                                    <img src="https://chart.googleapis.com/chart?cht=qr&chl=@item.ChildrenCode&chs=180x180&choe=UTF-8&chld=L|2%27%20alt=" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <center> <p style="color:black; font-size:35px;">No Children is Dropped Off</p></center>
+        }
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#jayb1").DataTable();
+
+            $("#dialog-form").dialog({
+                modal: true
+            });
+        });
+    </script>
+    //JQuery Code
+    <script>
+        $(document).on("click", ".print", function () {
+            const section = $("section");
+            const modalBody = $(".modal-body-wrapper").detach();
+
+            const content = $(".content").detach();
+            section.append(modalBody);
+            window.print();
+            section.empty();
+            section.append(content);
+            $(".modal-body-wrapper").append(modalBody);
+        });
+    </script>
+    // Css Code
+    <style>
+        .body {
+            background: antiquewhite;
+        }
+
+        .modal-body-wrapper {
+            overflow-y: scroll;
+            height: 60vh;
+        }
+    </style>
+
+
+

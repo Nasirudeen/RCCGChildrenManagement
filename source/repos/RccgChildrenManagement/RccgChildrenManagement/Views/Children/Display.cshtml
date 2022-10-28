@@ -1,0 +1,125 @@
+﻿@model IEnumerable<RccgChildrenManagement.Models.Children>
+
+@{
+    ViewData["Title"] = "Children  List";
+    Layout = "~/Views/Shared/LayoutNew.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<CENTER><h4 style="margin-top: 30px; font-size:55px;">CHILDREN LIST  </h4></CENTER>
+<h4 style="text-align :right;">@DateTime.Now.ToString("dd MMMM, yyyy"), @DateTime.Now.ToShortTimeString()</h4>
+<div class="panel-body">
+    <div class="row">
+    </div>
+    <div class="form-border table-responsive" style="margin-top:40px;">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped table-hover" id="jayb1" border="1">
+                <thead style="background-color:azure;">
+                    <tr>
+                        <th>
+                            SNo
+                        </th>
+                        <th>
+                            Children Name
+                        </th>
+                        <th>
+                            DOB
+                        </th>
+                        <th>
+                            Class
+                        </th>
+                        <th>
+                            Registered
+                        </th>
+                        <th>
+                        <th>
+                            <a href="~/Children/Create/" class="btn btn-lg btn-success"><i class="fas fa-plus"></i>Create New</a>
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var Id = item.ChildrenId;
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChildrenId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChildFirstName)
+
+                                @Html.DisplayFor(modelItem => item.ChildLastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Class)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td class="text-center">
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-controller="Children" asp-route-id="@item.ChildrenId" asp-action="Edit" class="btn btn-primary mx-2"><i class="fas fa-edit"></i>&nbspEdit</a>
+
+                                </div>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <center> <p style="color:black; font-size:35px;">No Audit Trail is created</p></center>
+        }
+    </div>
+    @*<div class="text-center">
+
+            @if (User.IsInRole("SuperAdmin") | User.IsInRole("Admin"))
+            {
+                <a href="~/Roaster/Index1/" class="btn btn-primary bg-c-blue" style="font-size:35px"><i class="fas fa-plus"></i>&nbspView Roaster Report</a>
+            }
+        </div>*@
+    <script>
+        $(document).ready(function () {
+            $("#jayb1").DataTable();
+
+            $("#dialog-form").dialog({
+                modal: true
+            });
+        });
+
+
+
+    </script>
+
+    @section Scripts{
+        <script>
+
+
+            $(document).ready(function () {
+                $("#jayb1").DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'excel', 'pdf', 'print'
+                    ]
+                });
+
+                $("#dialog-form").dialog({
+                    modal: true
+                });
+
+            });
+        </script>
+    }

@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Veryfy";
+    Layout = "_Layout";
+}
+<br />
+<br />
+<br />
+<div class="container row reg-panel">
+    <div class="col-md-4">
+        <div id="center">
+            <div>
+                <img style="width: 96.5%; Height: 122%" src="~/images/rccglogin.png" alt="RCCG Logo">
+
+            </div>
+
+            @*<h1>Children Church</h1>*@
+            @*<p>Register your kids for church</p>*@
+        </div>
+
+        <div style="background-color: none; color: white;  margin-top: 18rem">
+            @*<p style="font-style: italic;">Jesus Christ the same yesterday, today, and forever more. Amen</p>*@
+        </div>
+    </div>
+
+    <div class="col-xl-8" style="border: 1px;" solid #ccc; padding-top: 1rem; width="xl: 140px;">
+        <form class="form-signin" asp-action="VerifyOTP" method="post" style="margin-top:30px;">
+            <div c style="width:100%; margin-left:-6%; margin-bottom:25%; height:640px;">
+                @*<div class="card border p-4" style="width:68%; margin-left:40%; margin-bottom:40%; height:500px;">*@
+                
+                    <center> <h3> CHECK YOUR EMAIL  FOR NEW OTP</h3></center>
+               
+                   
+                    <h5>  @Html.ValidationSummary(false, "", new { @class = "text-danger" })</h5>
+                    <div class="form-group row" style="margin-top:40px;">
+
+                        <label for="inputEmail3" class="col-sm-3 col-form-label" align="right">ENTER CODE</label>
+                        <div class="col-auto">
+                            <input class="form-control inputstl" type="text" class="form-control" id="inputEmail3" name="OtpCode" placeholder="Enter your Code" style="width:350px;" required>
+                            <button class="btn btn-lg btn-primary btn-block mt-5" type="submit" style="width:77%; margin-top:5%; margin-left:10%;">Verify Email</button>
+
+                            <div class="text-center p-t-10" style="text-align:center; vertical-align:top; margin-top:2px;">
+                                <a class="forgot" class="btn btn-link style="text-decoration:none; cursor:pointer;" href="~/Login/Login">Login</a>
+                            </div>
+                        </div>
+                    </div>
+
+</form>
+        <style>
+            .inputstl {
+                padding: 9px;
+                border: solid 1px #0077B0;
+                outline: 0;
+                background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
+                background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+                box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+                -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+                -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+            }
+        </style>
+        <script type="text/javascript">
+@if (TempData["status"] != null)
+{
+    <text>alert('OTP has been sent to yoyr registered Email'); </text>
+}
+   
+}
+        </script>

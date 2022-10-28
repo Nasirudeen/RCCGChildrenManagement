@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - RCCG GLORY WORSHIP CENTRE  CHILDREN APPLICATION</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <style>
+        .inputstl {
+            padding: 9px;
+            border: solid 1px #0077B0;
+            outline: 0;
+            background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
+            background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+            box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+            -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+            -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bootstrap NavBar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="position:absolute; top:0px; left:0px; width:100%; z-index: 10;">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="text-center">
+
+            <span style="font-size: 40px " class="menu-collapsed" class="btn btn-primary bg-c-blue"> RCCG GLORY WORSHIP CENTRE CHILDREN APPLICATION  </span>
+
+        </div>
+
+
+        <!-- Bootstrap row -->
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <!-- This menu is hidden in bigger devices with d-sm-none.
+                The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+                <li class="nav-item dropdown d-sm-block d-md-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                        <a class="dropdown-item" href="#"></a>
+                        <a class="dropdown-item" href="#"></a>
+                        <a class="dropdown-item" href="#"></a>
+                        <a class="dropdown-item" href="#"></a>
+                        <a class="dropdown-item" href="#"></a>
+                        <a class="dropdown-item" href="#"></a>
+                    </div>
+                </li><!-- Smaller devices menu END -->
+
+            </ul>
+        </div>
+
+        <div class="my-0">
+
+            <p style="background-color:lime">Welcome @User.Identity.Name </p>
+
+            @*<center> @User.Identity.Name</center>*@
+            <a class="dropdown-item" style="float:right" asp-controller="Login" asp-action="LogOut">Logout</a>
+        </div>
+    </nav><!-- NavBar END -->
+    <ceneter>
+        <nav class="navbar navbar-expand-md navbar-dark bg-info" style="position:absolute; top:80px; left:0px; width:100%; z-index: 10;">
+            <div>
+                <a href="~/Home/Index/" class="btn btn-primary">
+                    <span class="menu-collapsed"> DASHBOARD </span>
+                </a>
+            </div>
+            @if (User.IsInRole("SuperAdmin") | User.IsInRole("Admin"))
+            {
+                <div>
+                    <a href="~/User/Create/" class="btn btn-primary">
+                        <span class="menu-collapsed"> CREATE PARENT </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/Children/Create/" class="btn btn-primary">
+                        <span class="menu-collapsed"> CREATE CHILDREN </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/User/Index/" class="btn btn-primary">
+                        <span class="menu-collapsed"> MANAGE </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/DropOff/Index/" class="btn btn-primary">
+                        <span class="menu-collapsed"> DROP OFF </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/PickUp/Create/" class="btn btn-primary">
+                        <span class="menu-collapsed"> PICK UP </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/User/Index/" class="btn btn-primary">
+                        <span class="menu-collapsed"> USER LIST </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/Role/Index/" class="btn btn-primary">
+                        <span class="menu-collapsed"> ROLE LIST </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/AuditTrail/Index/" class="btn btn-primary">
+                        <span class="menu-collapsed"> AUDIT TRAIL LIST </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/User/Change/" class="btn btn-primary">
+                        <span class="menu-collapsed"> CHANGE PASSWORD </span>
+                    </a>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <div>
+                    <a href="~/Login/LogOut/" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">LOG OUT</span>
+                    </a>
+                </div>
+            }
+
+            @if (User.IsInRole("Parent"))
+            {
+                <div>
+                    <a href="~/User/Create/" class="btn btn-primary">
+                        <span class="menu-collapsed"> CREATE PARENT </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/Children/Create/" class="btn btn-primary">
+                        <span class="menu-collapsed"> CREATE CHILDREN </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/DropOff/Index/" class="btn btn-primary">
+                        <span class="menu-collapsed"> DROP OFF </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/User/Change/" class="btn btn-primary">
+                        <span class="menu-collapsed"> CHNAGE PASSWORD </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="~/Login/LogOut/" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">LOG OUT</span>
+                    </a>
+                </div>
+            }
+        </nav>
+        <div class="row" id="body-row" style="height: 50px !important">
+            <!-- Sidebar -->
+
+
+
+        </div>
+        <!-- sidebar-container END -->
+        <!-- MAIN -->
+
+        <div class="col" style="background-color:#f5fbff">
+            @RenderBody()
+
+            <footer class="border-top footer text-muted mt-5">
+                <div class="container d-flex mt-4 p-3 mb-4 justify-content-center">
+                    &copy; @DateTime.Now.Year - Rccg Glory Worship Centre Children Application - Powered by IT
+                </div>
+            </footer>
+        </div><!-- Main Col END -->
+        </div><!-- body-row END -->
+        @*<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>*@
+        @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>*@
+        <!-- Optional JavaScript -->
+        <script src="~/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+        @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<RccgChildrenManagement.Models.Attendance>
+
+@{
+    ViewData["Title"] = "Attendance  List";
+    Layout = "~/Views/Shared/LayoutNew.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<CENTER><h4 style="margin-top: 30px; font-size:55px;">DROP OFF MAIL LIST  </h4></CENTER>
+<h4 style="text-align :right;">@DateTime.Now.ToString("dd MMMM, yyyy"), @DateTime.Now.ToShortTimeString()</h4>
+<div class="panel-body">
+    <div class="row">
+    </div>
+    <div class="form-border table-responsive" style="margin-top:40px;">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped table-hover" id="jayb1" border="1">
+                <thead class="success" style="background-color:azure;">
+                    <tr>
+                        <th>
+                            SNo
+                        </th>
+                        <th>
+                            EmaillAddress
+                        </th>
+                        <th>
+                            QRCode
+                        </th>
+                        <th>
+                           Created
+                        </th>
+                        <th>
+                            Updated
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var Id = item.AttendanceId;
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AttendanceId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                        </td>
+                        <td>
+                           <img src='" + imagePath + "' , QRCodeAttachment />
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Created)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Updated)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <center> <p style="color:black; font-size:35px;">No Attendance is created</p></center>
+        }
+    </div>
+    @*<div class="text-center">
+
+            @if (User.IsInRole("SuperAdmin") | User.IsInRole("Admin"))
+            {
+                <a href="~/Roaster/Index1/" class="btn btn-primary bg-c-blue" style="font-size:35px"><i class="fas fa-plus"></i>&nbspView Roaster Report</a>
+            }
+        </div>*@
+
+
+    @section Scripts{
+        <script>
+
+
+            $(document).ready(function () {
+                $("#jayb1").DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'excel', 'pdf', 'print'
+                    ]
+                });
+
+                $("#dialog-form").dialog({
+                    modal: true
+                });
+
+            });
+        </script>
+    }

@@ -1,0 +1,256 @@
+﻿@model IEnumerable<RccgChildrenManagement.Models.FetchQrDetails>
+
+@{
+    ViewData["Title"] = "Fetch Page";
+    Layout = "~/Views/Shared/LayoutNew.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<style>
+    .btn {
+        background-color: #f4511e;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        font-size: 16px;
+        margin: 4px 2px;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+        .btn:hover {
+            opacity: 0.6
+        }
+</style>
+<style>
+    .button {
+        border-radius: 4px;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+        width: 200px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .button span:after {
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+            }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+            .button:hover span:after {
+                opacity: 1;
+                right: 0;
+            }
+</style>
+
+<div class="container row reg-panel">
+    <div class="col-md-4">
+        <div id="center">
+            <div>
+                <img style="width: 20rem; transition: width 2s" src="~/images/Rccg.png" alt="RCCG Logo">
+
+            </div>
+
+            <h1>Children Church</h1>
+            <p>Register your kids for church</p>
+        </div>
+
+        <div style="background-color: none; color: white;  margin-top: 18rem">
+            <p style="font-style: italic;">Jesus Christ the same yesterday, today, and forever more. Amen</p>
+        </div>
+    </div>
+    <div class="col-xl-8" style="border: 1px;" solid #ccc; padding-top: 1rem; width="xl: 1340px;">
+
+        <h2>RCCG GWC Children Church Registration</h2>
+        <p><b>Note:</b> You have to set a responsible party (last section) for drop off and pickup</p>
+        <hr>
+        <h4 style="text-align :right;">@DateTime.Now.ToString("dd MMMM, yyyy"), @DateTime.Now.ToShortTimeString()</h4>
+        <hr>
+        <div id="@ViewBag.id">
+           
+                @*<img src="https://chart.googleapis.com/chart?cht=qr&chl=@ViewBag.id&chs=180x180&choe=UTF-8&chld=L|2%27%20alt=" />
+         
+            <input type="button" onclick="PrintElem(@ViewBag.id)" class="btn btn-success" value="Print">*@
+
+        </div>
+       
+        <hr>
+        <CENTER><h4 style="margin-top: 30px; color:crimson; font-size:55px;">KIDs DROP OFF</h4></CENTER>
+        <hr />
+        <form method="post" asp-controller="Attendance" asp-action="FetchQRCode">
+
+            <br />
+            <div align="center">
+                <input class="form-control inputstl" type="text" class="form-control" name="id" placeholder=" Scan Parent Code(Case Sensitive)" style="width: 330px;" required>
+            </div>
+            <div>
+                <button class="btn btn-lg btn-primary btn-block mt-5 button" type="submit" style="width:77%; margin-top:5%; margin-left:10%;">Fetch Drop Off Details</button>
+            </div>
+        </form>
+        <hr />
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Print QRCode</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+
+            </div>
+
+
+            <hr />
+            <form method="post" asp-controller="Attendance" asp-action="PrintQRCode">
+                <div class="form-border" style="margin-top:40px;">
+                    @if (Model.Count() > 0)
+                    {
+                        <table class="table table-striped table-hover" id="jayb1" border="1">
+                            <thead style="background-color:azure;">
+                                <tr bgcolor="yellow" style="color:blue; font-size:35px;">
+
+                                    <th>
+                                        Children Name
+                                    </th>
+
+
+                                    <th>
+                                        Image to print
+                                    </th>
+                                    <th>
+                                        Click Button to Print
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td style="color: black; font-size: 35px;">
+                                            @Html.DisplayFor(modelItem => item.ChildFirstName)
+                                            @Html.DisplayFor(modelItem => item.ChildLastName)
+                                        </td>
+
+                                        <td style="color: black; font-size: 35px;" id="@item.ChildrenCode">
+
+
+                                            <img src="https://chart.googleapis.com/chart?cht=qr&chl=@item.ChildrenCode&chs=180x180&choe=UTF-8&chld=L|2%27%20alt=" />
+
+
+                                        </td>
+                                        <td>
+
+                                            @*<button class="btn btn-lg btn-success btn-block mt-5" id="btnPrint" type="submit" style="width:77%; margin-top:5%; margin-left:10%;">PRINT</button>*@
+                                            <input onclick="PrintElem(@item.ChildrenCode,@item.ParentCode)" type="button" value="print" class="btn btn-success btn">  @*style="width:77%; margin-top:5%; margin-left:10%;">PRINT/>*@
+                                            @*<a href="/attendance/printqrcode/@item.ChildrenCode">
+                                        <H1> Print </H1>
+                                          </a>*@
+                                        </td>
+
+
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <center> <p style="color:black; font-size:35px;">No Children to Dropped Off</p></center>
+                    }
+                </div>
+            </form>
+            <script>
+                $(document).ready(function () {
+                    $("#jayb1").DataTable();
+
+                    $("#dialog-form").dialog({
+                        modal: true
+                    });
+                });
+
+            </script>
+            
+
+            <script type="text/javascript">
+
+                function PrintElem(childrenCode, parentCode) {
+                    var parameters = "id=" + parentCode + "&ChildrenId=" + childrenCode;
+
+                    fetch('/attendance/PrintQRCode?' + parameters, {
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+
+                            return false;
+                        });
+
+                    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+                    mywindow.document.write('</head><body >');
+                    mywindow.document.write(document.getElementById(childrenCode).innerHTML);
+
+                    mywindow.document.write('</body></html>');
+                    mywindow.document.close(); // necessary for IE >= 10
+                    mywindow.focus(); // necessary for IE >= 10*/
+
+                    mywindow.print();
+                    // alert("QRCode Printed Successfully");
+                    mywindow.close();
+
+                    return true;
+                    //.catch ((error) => {
+                    //    console.error('Error:', error);
+                    //    alert("QRCode print not Successful, Error in Printing");
+                    //});
+                    //mywindow.document.write('<html><head><title>' + document.title + '</title>');
+                    //mywindow.document.write('<h1>' + document.title + '</h1>');
+                }
+            </script>
